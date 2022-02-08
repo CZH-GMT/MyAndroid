@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="@color/gray"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/tabwx"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imagwx"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/select" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="微信" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tablxr"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imaglxr"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/select" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系人"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tabfx"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imagfx"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/select" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发现"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tabme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imagme"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/select" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我"
+
+            />
+
+    </LinearLayout>
+</LinearLayout>
