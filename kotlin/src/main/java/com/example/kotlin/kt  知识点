@@ -1,13 +1,20 @@
-/**TODO let函数
+/**
+ TODO let函数
  * let函数：xxx.let{  it  } it代表xxx peint（it） ,返回类型根据最后一行的变化而变化
+ TODO also函数  also和apply基本相同 只不过使用上的区别
+ * also函数：xxx.also{  }  返回类型是xxx     持有it==xxx本身
  TODO apply函数
  * apply函数：xxx.apply{  this  }  this代表xxx ,     返回的都是xxx本身
  TODO run函数
  * run函数：xxx.run{  this }  this代表xxx ,   返回根据最后一行的变化而变化
+
+
+
+
+
+
  TODO with(str)函数  with和run基本相同 只不过使用上的区别
  * with函数：with(str)   with(str){ } this代表xxx ,   返回根据最后一行的变化而变化
- TODO also函数  also和apply基本相同 只不过使用上的区别
- * also函数：xxx.also{  }  返回类型是xxx     持有it==xxx本身
  TODO kotlin takeIf内置函数  taleIf+空合并操作符（?:  "为空"）  xxx.takeIf(boolean)
  * kotlin takeIf内置函数  taleIf+空合并操作符（?:  "为空"）  xxx.takeIf(boolean)
  */
