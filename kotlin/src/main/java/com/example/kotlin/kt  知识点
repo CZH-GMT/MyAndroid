@@ -18,3 +18,37 @@
  TODO kotlin takeIf内置函数  taleIf+空合并操作符（?:  "为空"）  xxx.takeIf(boolean)
  * kotlin takeIf内置函数  taleIf+空合并操作符（?:  "为空"）  xxx.takeIf(boolean)
  */
+
+ TODO =============================================let 和 apply 源码分析
+
+ TODO let源码分析
+
+      //let函数
+      //private私有化
+      //inline 内联函数 因为我们的函数中有lambda表达式 加上inline可以提高性能
+      //fun<T,Q> 在函数中申明两个泛型，T 是输入 Q是输出
+      //T.mlet对T进行函数扩展意味着  所有类型 万能类型都可以使用 xxx.mlet
+      //lambda: (T) -> Q)  (T 输入)->Q输出
+      //Q 会根据用户的返回类型变化而变化
+      //this ==T函数本身
+      TODO  lambda: (T) -> Q 中 T是什么  实现中it就是什么
+      private inline fun <T, Q> T.mlet(lambda: (T) -> Q): Q {
+          val lambda1 = lambda(this)
+          return lambda1
+
+      }
+TODO apply源码分析
+
+     //apply函数
+     //private私有化
+     //inline 内联函数 因为我们的函数中有lambda表达式 加上inline可以提高性能
+     //fun<A> 在函数中申明泛型 A指的是所有类型
+     //A.mapplyt对A进行函数扩展意味着  所有类型 万能类型都可以使用 xxx.mapply
+     //A.lambda: (T) -> Q)   A.lambda让我们的匿名函数里持有this ，在lambda中不需要返回值，因为永远返回A本身
+     //Q 会根据用户的返回类型变化而变化
+     //this ==A函数本身
+     TODO  lambda: A.() -> Unit 中  A.() xxx.() 实现中this就是什么
+     private inline fun <A> A.mapply(lambda: A.() -> Unit): A {
+         lambda()
+         return this
+     }
