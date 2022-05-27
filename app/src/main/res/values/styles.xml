@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BoxDialog" parent="android:Animation">
+        <!-- 是否有边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!--是否在悬浮Activity之上  -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--阴影  -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+    </style>
+
+    <style name="dialogAnim" parent="android:Animation">
+        <!--可加入动画-->
+        <item name="android:windowEnterAnimation">@anim/startanim</item>
+
+        <item name="android:windowExitAnimation">@anim/closeanim</item>
+    </style>
+</resources>

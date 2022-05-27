@@ -1,3 +1,4 @@
+include ':mvp'
 include ':kotlin'
 include ':rxjava'
 include ':retrofit'

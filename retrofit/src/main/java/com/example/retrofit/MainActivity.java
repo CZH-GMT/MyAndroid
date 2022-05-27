@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
 
 public class MainActivity extends AppCompatActivity {
     String url = "https://www.httpbin.org/get?a=1&b=2";
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+        Retrofit.Builder builder = new Retrofit.Builder();
         Retrofit retrofit  = new Retrofit.Builder().baseUrl("https://www.httpbin.org/").build();
         retrofitService = retrofit.create(RetrofitService.class);
 
