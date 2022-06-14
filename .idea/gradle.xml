@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/activitytofragment" />
+            <option value="$PROJECT_DIR$/anotation" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/fragmentandviewpage" />
             <option value="$PROJECT_DIR$/jtpackmodel" />

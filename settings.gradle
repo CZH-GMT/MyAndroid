@@ -1,3 +1,4 @@
+include ':anotation'
 include ':jtpackmodel'
 include ':mvp'
 include ':kotlin'
