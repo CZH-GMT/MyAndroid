@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<UserParcelable> userParcelableList = new ArrayList<>();
                 Intent intent = new Intent(MainActivity.this, MainActivity2.class)
                         .putExtra("name", "Lance")
-                        .putExtra("attr","帅")
+                        .putExtra("attr", "帅")
                         .putExtra("array", new int[]{1, 2, 3, 4, 5, 6})
                         .putExtra("userParcelable", new UserParcelable("Lance"))
                         .putExtra("userParcelables", new UserParcelable[]{new UserParcelable("Alvin")})
-                        .putExtra("users",new UserSerializable[]{new UserSerializable("Jett")})
-                        .putExtra("strs",new String[]{"1","2"})
+                        .putExtra("users", new UserSerializable[]{new UserSerializable("Jett")})
+                        .putExtra("strs", new String[]{"1", "2"})
                         .putParcelableArrayListExtra("userParcelableList", userParcelableList);
                 startActivity(intent);
             }
