@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +27,13 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
     private ImageView mImage1;
     private ImageView mImage2;
     private ImageView mImage3;
+    private View inflate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        inflate = LayoutInflater.from(MainActivity.this).inflate(R.layout.layout_dailog, null);
         initViews();
 
 
@@ -43,10 +46,13 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
         mImage3 = findViewById(R.id.image3);
 
         Button dialog = findViewById(R.id.dailog);
-
+        Button dialogBuilder = findViewById(R.id.dialogBuilder);
         dialog.setOnClickListener((v)-> {
             showDialogs();
 //
+        });
+        dialogBuilder.setOnClickListener((v)->{
+            showDialogBuilder();
         });
 
         RequestOptions override = new RequestOptions()
@@ -71,17 +77,17 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
                 //.transform(new RoundedCorners(30))四个角统一
                 .into(mImage1);
 
-//注解glide
-//        GlideApp.with(this).load("").placeholder();
+    }
+
+    private void showDialogBuilder() {
+        DialogUtil builder = new DialogUtil.Builder().context(this).isOutsideClose(true).dialogStyle(R.style.BoxDialog).onViewListener(this).gravity(Gravity.CENTER).height(ActionBar.LayoutParams.WRAP_CONTENT).width(ActionBar.LayoutParams.MATCH_PARENT).view(inflate).builder();
+        builder.show();
 
 
     }
 
     private void showDialogs() {
-//        DialogUtil dialogUtil = new DialogUtil(this);
-//                dialogUtil.show();
-//                new CustomDialog.Builder(MainActivity.this)
-        View inflate = LayoutInflater.from(MainActivity.this).inflate(R.layout.layout_dailog, null);
+
 
         TextView one = inflate.findViewById(R.id.one);
         TextView two = inflate.findViewById(R.id.two);
@@ -109,11 +115,12 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
 
 
 
+
     }
 
     @Override
     public void getView(View view) {
-        Toast.makeText(this,view.getId()+"hhhhhhhhhhhhhhhhhhhhhhhhhhh" , Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,view.getId()+"回调View" , Toast.LENGTH_SHORT).show();
 
     }
 }
