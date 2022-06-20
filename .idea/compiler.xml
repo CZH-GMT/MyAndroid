@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="My_Android.activitytofragment" target="1.8" />
+      <module name="My_Android.anotation" target="1.8" />
+      <module name="My_Android.app" target="1.8" />
+      <module name="My_Android.fragmentandviewpage" target="1.8" />
+      <module name="My_Android.kotlin" target="1.8" />
+      <module name="My_Android.mvp" target="1.8" />
+      <module name="My_Android.okhttp" target="1.8" />
+      <module name="My_Android.proxy" target="1.8" />
+      <module name="My_Android.retrofit" target="1.8" />
+      <module name="My_Android.rxjava" target="1.8" />
+      <module name="My_Android.viewpage2" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
