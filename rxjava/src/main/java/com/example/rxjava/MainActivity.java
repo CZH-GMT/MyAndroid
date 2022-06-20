@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         mImage = findViewById(R.id.image);
     }
 
+
     public void downloadImage(View view) {
 
         Observable.just(imageurl)
