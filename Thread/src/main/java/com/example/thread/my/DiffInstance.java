@@ -6,7 +6,8 @@ import com.example.thread.tools.SleepTools;
 /**
  *类说明：锁的实例不一样，也是可以并行的   第八个类
  */
-public class DiffInstance {
+public class
+DiffInstance {
 	
     private static class InstanceSyn implements Runnable{
         private DiffInstance diffInstance;

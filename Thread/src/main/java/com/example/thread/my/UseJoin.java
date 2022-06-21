@@ -42,7 +42,6 @@ public class UseJoin {
 
     public static void main(String[] args) throws Exception {
 
-        Thread lison = Thread.currentThread();
         GoddessBoyfriend goddessBoyfriend = new GoddessBoyfriend();
         Thread gbf = new Thread(goddessBoyfriend);
         Goddess goddess = new Goddess(gbf);
