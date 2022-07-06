@@ -1,6 +1,8 @@
-package com.example.thread.ch1.wn;
+package advancedFeatures.concurrent.wn;
 
 /**
+ *@author Mark老师   享学课堂 https://enjoy.ke.qq.com 
+ *
  *类说明：快递实体类
  */
 public class Express {
@@ -18,39 +20,40 @@ public class Express {
 
     /* 变化公里数，然后通知处于wait状态并需要处理公里数的线程进行业务处理*/
     public synchronized void changeKm(){
-        //TODO
+    	this.km = 101;
+        notify();
     }
 
     /* 变化地点，然后通知处于wait状态并需要处理地点的线程进行业务处理*/
-    public  synchronized  void changeSite(){
-        this.site = "BeiJing";
-        notifyAll();
+    public synchronized void changeSite(){
+		this.site = "BeiJing";
+		notify();
     }
 
     public synchronized void waitKm(){
-        while (this.km<100){
+		while(this.km<100){
             try {
                 wait();
-                System.out.println("Check Site thread["+Thread.currentThread().getId()
-                        +"] is be notified");
+                System.out.println("check km thread["
+                        +Thread.currentThread().getName()+"] is be notifyed");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        //TODO
-        System.out.println("the Km is "+this.km+",I will change db");
+    	System.out.println("the km is"+this.km+",I will change db.");
+
     }
 
     public synchronized void waitSite(){
-        while(this.site.equals(CITY)){//快递到达目的地
+        while(CITY.equals(this.site)){
             try {
                 wait();
-                System.out.println("Check Site thread["+Thread.currentThread().getId()
-                		+"] is be notified");
+                System.out.println("check site thread["
+                        +Thread.currentThread().getName()+"] is be notifyed");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("the site is "+this.site+",I will call user");
+    	System.out.println("the site is"+this.site+",I will call user.");
     }
 }

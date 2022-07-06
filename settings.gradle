@@ -1,3 +1,4 @@
+include ':concurrent'
 include ':Thread'
 include ':proxy'
 include ':anotation'
