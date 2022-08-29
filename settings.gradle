@@ -13,3 +13,4 @@ include ':fragmentandviewpage'
 include ':viewpage2'
 include ':app'
 rootProject.name = "My Android"
+include ':xuliehua'
