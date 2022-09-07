@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyAndroid">
         <activity
-            android:name=".RequestActivity"
+            android:name=".retrofitokhttp.RequestActivity"
             android:exported="false" />
         <activity
-            android:name=".UseActivity"
+            android:name=".use.activity.UseActivity"
             android:exported="false" />
         <activity
-            android:name=".RxDownImageActivity"
+            android:name=".downloadiamge.RxDownImageActivity"
             android:exported="false" />
         <activity android:name=".MainActivity">
             <intent-filter>
