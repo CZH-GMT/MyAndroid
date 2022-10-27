@@ -1,8 +1,10 @@
 package com.example.myandroid;
 
 import android.app.ActionBar;
+import android.content.res.Configuration;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +37,24 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
         setContentView(R.layout.activity_main);
         inflate = LayoutInflater.from(MainActivity.this).inflate(R.layout.layout_dailog, null);
         initViews();
+        judgeScreenDirection();
 
 
+    }
+
+    private void judgeScreenDirection() {
+        //判断横竖屏方向
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+
+            Log.i("info", "landscape"); // 横屏
+
+        }
+
+        else if (getResources().getConfiguration().orientation ==Configuration.ORIENTATION_PORTRAIT) {
+
+            Log.i("info", "portrait"); // 竖屏
+
+        }
     }
 
     private void initViews() {
