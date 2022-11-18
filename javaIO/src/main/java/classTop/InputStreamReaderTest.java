@@ -61,8 +61,8 @@ public class InputStreamReaderTest {
 		}
 	}
 	public static void main(String[] args) throws IOException {
-		//£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿
-		//´´½¨¹ı³ÌÊÇ·ñ¹ıÓÚÂé·³£¿£¿£¿£¿£¿
+		//ï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿ
+		//åˆ›å»ºè¿‡ç¨‹æ˜¯å¦è¿‡äºéº»çƒ¦ï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿ
 		testISRDefaultEncoder(
 				new FileInputStream(
 						new File("src/testtxt/OutputStreamWriter.txt")));

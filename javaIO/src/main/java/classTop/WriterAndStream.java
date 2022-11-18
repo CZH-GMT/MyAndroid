@@ -18,9 +18,9 @@ public class WriterAndStream {
 //					new FileWriter("src/testtxt/writerAndStream.txt"));
 					new OutputStreamWriter(
 							new FileOutputStream(
-									new File("src/testtxt/writerAndStream.txt")),"GBK"));
+									new File(Path.path+"/writerAndStream.txt")),"UTF-8"));
 			
-			bufferedWriter.write("ÎÒ °®ÄãÖĞ¹ú£¬Ç×°®µÄÄ¸Ç×");
+			bufferedWriter.write("æˆ‘ çˆ±ä½ ä¸­å›½ï¼Œäº²çˆ±çš„æ¯äº²");
 			bufferedWriter.flush();
 			bufferedWriter.close();
 			System.out.println("end");

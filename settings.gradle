@@ -1,3 +1,4 @@
+include ':javaIO'
 include ':concurrent'
 include ':Thread'
 include ':proxy'

@@ -26,7 +26,7 @@ public class DataStreamTest {
 			DataOutputStream out = new DataOutputStream(
 					new	BufferedOutputStream(
 					new FileOutputStream(
-					new File("src/testtxt/tataStreamTest.txt"))));
+					new File(Path.path+"/tataStreamTest.txt"))));
 			
 			out.writeBoolean(true);
             out.writeByte((byte)0x41);
@@ -35,7 +35,7 @@ public class DataStreamTest {
             out.writeInt(0x12345678);
             out.writeLong(0x987654321L);
 
-            out.writeUTF("abcdefghijklmnopqrstuvwxyz严12");
+            out.writeUTF("abcdefghijklmnopqrstuvwxyz12");
             out.writeLong(0x023433L);
 			out.close();
 		} catch (FileNotFoundException e) {
@@ -49,7 +49,7 @@ public class DataStreamTest {
 	
 	private static void testDataInputStreamI() {
 		try {
-			File file = new File("src/testtxt/tataStreamTest.txt");
+			File file = new File(Path.path+"/tataStreamTest.txt");
 			DataInputStream in = new DataInputStream(
 					new BufferedInputStream(
 					new FileInputStream(file)));
@@ -69,17 +69,14 @@ public class DataStreamTest {
 		}
 	}
 	
-    // 打印byte对应的16进制的字符串
     private static String byteToHexString(byte val) {
         return Integer.toHexString(val & 0xff);
     }
 
-    // 打印char对应的16进制的字符串
     private static String charToHexString(char val) {
         return Integer.toHexString(val);
     }
 
-    // 打印short对应的16进制的字符串
     private static String shortToHexString(short val) {
         return Integer.toHexString(val & 0xffff);
     }

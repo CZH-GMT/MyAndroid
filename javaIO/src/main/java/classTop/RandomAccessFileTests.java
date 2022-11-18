@@ -6,43 +6,43 @@ import java.io.RandomAccessFile;
 
 public class RandomAccessFileTests {
 
-private static final File file = new File("src\\testtxt\\raf.txt");
+private static final File file = new File(Path.path+"/raf.txt");
 	
 	/**
-	 * ÏòÎÄ¼şÖĞĞ´ÈëÄÚÈİ
+	 * å‘æ–‡ä»¶ä¸­å†™å…¥å†…å®¹
 	 */
 	public static void testRandomAccessFileWriter() throws IOException{
-		//ÒªÏÈ½«ÒÑÓĞÎÄ¼şÉ¾³ı¡¢±ÜÃâ¸ÉÈÅ¡£
+		//è¦å…ˆå°†å·²æœ‰æ–‡ä»¶åˆ é™¤ã€é¿å…å¹²æ‰°ã€‚
 		if(file.exists()){
 			file.delete();
 		}
 		
 		RandomAccessFile rsfWriter = new RandomAccessFile(file, "rw");
 		
-		//²»»á¸Ä±äÎÄ¼ş´óĞ¡¡¢µ«ÊÇËû»á½«ÏÂÒ»¸ö×Ö·ûµÄĞ´ÈëÎ»ÖÃ±êÊ¶Îª10000¡¢
-		//Ò²¾ÍÊÇËµ´ËºóÖ»ÒªĞ´ÈëÄÚÈİ¡¢¾ÍÊÇ´Ó10001¿ªÊ¼´æ¡¢
+		//ä¸ä¼šæ”¹å˜æ–‡ä»¶å¤§å°ã€ä½†æ˜¯ä»–ä¼šå°†ä¸‹ä¸€ä¸ªå­—ç¬¦çš„å†™å…¥ä½ç½®æ ‡è¯†ä¸º10000ã€
+		//ä¹Ÿå°±æ˜¯è¯´æ­¤ååªè¦å†™å…¥å†…å®¹ã€å°±æ˜¯ä»10001å¼€å§‹å­˜ã€
 		rsfWriter.seek(10000);
 		printFileLength(rsfWriter);		//result: 0
 		
-		//»á¸Ä±äÎÄ¼ş´óĞ¡¡¢Ö»ÊÇ°ÑÎÄ¼şµÄsize¸Ä±ä¡¢
-		//²¢Ã»ÓĞ¸Ä±äÏÂÒ»¸öÒªĞ´ÈëµÄÄÚÈİµÄÎ»ÖÃ¡¢
-		//ÕâÀï×¢ÊÍµôÊÇÎªÁËÑéÖ¤ÉÏÃæµÄseek·½·¨µÄËµÃ÷ÄÚÈİ
+		//ä¼šæ”¹å˜æ–‡ä»¶å¤§å°ã€åªæ˜¯æŠŠæ–‡ä»¶çš„sizeæ”¹å˜ã€
+		//å¹¶æ²¡æœ‰æ”¹å˜ä¸‹ä¸€ä¸ªè¦å†™å…¥çš„å†…å®¹çš„ä½ç½®ã€
+		//è¿™é‡Œæ³¨é‡Šæ‰æ˜¯ä¸ºäº†éªŒè¯ä¸Šé¢çš„seekæ–¹æ³•çš„è¯´æ˜å†…å®¹
 		rsfWriter.setLength(10000);
 		System.out.println("oo");
 		printFileLength(rsfWriter);		//result: 0
 		System.out.println("xx");
-		//Ã¿¸öºº×ÓÕ¼3¸ö×Ö½Ú¡¢Ğ´Èë×Ö·û´®µÄÊ±ºò»áÓĞÒ»¸ö¼ÇÂ¼Ğ´Èë×Ö·û´®³¤¶ÈµÄÁ½¸ö×Ö½Ú
-		rsfWriter.writeUTF("ÏíÑ§¿ÎÌÃ");	
+		//æ¯ä¸ªæ±‰å­å 3ä¸ªå­—èŠ‚ã€å†™å…¥å­—ç¬¦ä¸²çš„æ—¶å€™ä¼šæœ‰ä¸€ä¸ªè®°å½•å†™å…¥å­—ç¬¦ä¸²é•¿åº¦çš„ä¸¤ä¸ªå­—èŠ‚
+		rsfWriter.writeUTF("äº«å­¦è¯¾å ‚");	
 		printFileLength(rsfWriter);		//result: 10014 
 		
-		//Ã¿¸ö×Ö·ûÕ¼Á½¸ö×Ö½Ú
+		//æ¯ä¸ªå­—ç¬¦å ä¸¤ä¸ªå­—èŠ‚
 		rsfWriter.writeChar('a');
 		rsfWriter.writeChars("abcde");
 		printFileLength(rsfWriter);		//result: 10026
 		
-		//ÔÙ´Ó¡°ÎÄ¼şÖ¸Õë¡±Îª5000µÄµØ·½²åÒ»¸ö³¤¶ÈÎª100¡¢ÄÚÈİÈ«ÊÇ'a'µÄ×Ö·ûÊı×é
-		//ÕâÀïfile³¤ÒÀÈ»ÊÇ10026¡¢ÒòÎªËûÊÇ´Ó¡°ÎÄ¼şÖ¸Õë¡±Îª5000µÄµØ·½¸²¸ÇºóÃæ
-		//µÄ200¸ö×Ö½Ú¡¢ÏÂ±ê²¢Ã»ÓĞ³¬¹ıÎÄ¼ş³¤¶È
+		//å†ä»â€œæ–‡ä»¶æŒ‡é’ˆâ€ä¸º5000çš„åœ°æ–¹æ’ä¸€ä¸ªé•¿åº¦ä¸º100ã€å†…å®¹å…¨æ˜¯'a'çš„å­—ç¬¦æ•°ç»„
+		//è¿™é‡Œfileé•¿ä¾ç„¶æ˜¯10026ã€å› ä¸ºä»–æ˜¯ä»â€œæ–‡ä»¶æŒ‡é’ˆâ€ä¸º5000çš„åœ°æ–¹è¦†ç›–åé¢
+		//çš„200ä¸ªå­—èŠ‚ã€ä¸‹æ ‡å¹¶æ²¡æœ‰è¶…è¿‡æ–‡ä»¶é•¿åº¦
 		rsfWriter.seek(5000);
 		char[] cbuf = new char[100];
 		for(int i=0; i<cbuf.length; i++){
@@ -53,9 +53,9 @@ private static final File file = new File("src\\testtxt\\raf.txt");
 		
 		printFileLength(rsfWriter);	//result:  10026
 		
-		//ÔÙ´Ó¡°ÎÄ¼şÖ¸Õë¡±Îª1000µÄµØ·½²åÈëÒ»¸ö³¤¶ÈÎª100¡¢ÄÚÈİÈ«ÊÇaµÄ×Ö½ÚÊı×é
-		//ÕâÀïfile³¤ÒÀÈ»ÊÇ10026¡¢ÒòÎªËûÊÇ´Ó¡°ÎÄ¼şÖ¸Õë¡±Îª5000µÄµØ·½¸²¸ÇºóÃæ
-		//µÄ200¸ö×Ö½Ú¡¢ÏÂ±ê²¢Ã»ÓĞ³¬¹ıÎÄ¼ş³¤¶È
+		//å†ä»â€œæ–‡ä»¶æŒ‡é’ˆâ€ä¸º1000çš„åœ°æ–¹æ’å…¥ä¸€ä¸ªé•¿åº¦ä¸º100ã€å†…å®¹å…¨æ˜¯açš„å­—èŠ‚æ•°ç»„
+		//è¿™é‡Œfileé•¿ä¾ç„¶æ˜¯10026ã€å› ä¸ºä»–æ˜¯ä»â€œæ–‡ä»¶æŒ‡é’ˆâ€ä¸º5000çš„åœ°æ–¹è¦†ç›–åé¢
+		//çš„200ä¸ªå­—èŠ‚ã€ä¸‹æ ‡å¹¶æ²¡æœ‰è¶…è¿‡æ–‡ä»¶é•¿åº¦
 		byte[] bbuf = new byte[100];
 		for (int i = 0; i < bbuf.length; i++) {
 			bbuf[i] = 1;
@@ -66,36 +66,36 @@ private static final File file = new File("src\\testtxt\\raf.txt");
 	}
 	
 	/**
-	 * ´ÓÎÄ¼şÖĞ¶ÁÈ¡ÄÚÈİ
-	 * ÕâÀïÎÒÃÇÒªÇå³şÏÖÔÚÎÄ¼şÖĞÓĞÊ²Ã´ÄÚÈİ¡¢¶øÇÒ»¹ÒªÇå³şÕâĞ©ÄÚÈİÆğÊ¼×Ö½ÚÏÂ±ê¡¢³¤¶È
+	 * ä»æ–‡ä»¶ä¸­è¯»å–å†…å®¹
+	 * è¿™é‡Œæˆ‘ä»¬è¦æ¸…æ¥šç°åœ¨æ–‡ä»¶ä¸­æœ‰ä»€ä¹ˆå†…å®¹ã€è€Œä¸”è¿˜è¦æ¸…æ¥šè¿™äº›å†…å®¹èµ·å§‹å­—èŠ‚ä¸‹æ ‡ã€é•¿åº¦
 	 * 
 	 * @throws IOException
 	 */
 	public static void testRandomAccessFileRead() throws IOException{
 		/*
-		 * ¶ÔÎÄ¼şÖĞÄÚÈİ¼òµ¥ËµÃ÷£º
-		 * 1¡¢´Ó0µ½1000	Îª¿Õ
-		 * 2¡¢´Ó1001µ½1100ÊÇ100¸ö1
-		 * 3¡¢´Ó1101µ½5000ÊÇ¿Õ
-		 * 4¡¢´Ó5001µ½5200ÊÇ×Ö·û'a'
-		 * 5¡¢´Ó5201µ½10000ÊÇ¿Õ
-		 * 6¡¢´Ó10001µ½10011ÊÇ×Ö·û´®"³Â»ªÓ¦"
-		 * 7¡¢´Ó10012µ½10023ÊÇ"aabcde"
+		 * å¯¹æ–‡ä»¶ä¸­å†…å®¹ç®€å•è¯´æ˜ï¼š
+		 * 1ã€ä»0åˆ°1000	ä¸ºç©º
+		 * 2ã€ä»1001åˆ°1100æ˜¯100ä¸ª1
+		 * 3ã€ä»1101åˆ°5000æ˜¯ç©º
+		 * 4ã€ä»5001åˆ°5200æ˜¯å­—ç¬¦'a'
+		 * 5ã€ä»5201åˆ°10000æ˜¯ç©º
+		 * 6ã€ä»10001åˆ°10011æ˜¯å­—ç¬¦ä¸²"é™ˆååº”"
+		 * 7ã€ä»10012åˆ°10023æ˜¯"aabcde"
 		 */
 		RandomAccessFile rsfReader = new RandomAccessFile(file, "r");
-		//¿É°´ÕÕ×Ô¼ºÏë¶ÁÈ¡µÄ¶«Î÷ËùÔÚµÄÎ»ÖÃ¡¢³¤¶ÈÀ´¶ÁÈ¡
+		//å¯æŒ‰ç…§è‡ªå·±æƒ³è¯»å–çš„ä¸œè¥¿æ‰€åœ¨çš„ä½ç½®ã€é•¿åº¦æ¥è¯»å–
 		
-		//¶ÁÈ¡"ÏíÑ§¿ÎÌÃ"
+		//è¯»å–"äº«å­¦è¯¾å ‚"
 		rsfReader.seek(10000);
 		System.out.println(rsfReader.readUTF());
 		
-		//¶ÁÈ¡100¸ö×Ö·û'a'
+		//è¯»å–100ä¸ªå­—ç¬¦'a'
 		rsfReader.seek(5000);
 		byte[] bbuf = new byte[200];
 		rsfReader.read(bbuf);
 		System.out.println(new String(bbuf));
 		
-		//¶ÁÈ¡100¸ö1
+		//è¯»å–100ä¸ª1
 		byte[] bbuf2 = new byte[100];
 		rsfReader.seek(1000);
 		rsfReader.read(bbuf2, 0, 100);
@@ -103,15 +103,15 @@ private static final File file = new File("src\\testtxt\\raf.txt");
 			System.out.print(b);
 		}
 		
-		//¶ÁÈ¡×Ö·û'aabcde'
+		//è¯»å–å­—ç¬¦'aabcde'
 		byte[] bbuf3 = new byte[12];
 		rsfReader.seek(10014);
 		rsfReader.read(bbuf3);
 		System.out.println(new String(bbuf3));
 	}
 	/**
-	 * ´òÓ¡ÎÄ¼ş³¤¶È
-	 * @param rsfWriter Ö¸ÏòÎÄ¼şµÄËæ»úÎÄ¼şÁ÷
+	 * æ‰“å°æ–‡ä»¶é•¿åº¦
+	 * @param rsfWriter æŒ‡å‘æ–‡ä»¶çš„éšæœºæ–‡ä»¶æµ
 	 * @throws IOException
 	 */
 	private static void printFileLength(RandomAccessFile rsfWriter)

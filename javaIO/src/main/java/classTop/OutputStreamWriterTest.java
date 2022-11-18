@@ -17,18 +17,18 @@ public class OutputStreamWriterTest {
 	}
 	
 	public static void testOutputStreamWriter() throws IOException {
-		File file = new File("src/testtxt/OutputStreamWriter.txt");
+		File file = new File(Path.path+"/OutputStreamWriter.txt");
 		
-		// true, ÉèÖÃÄÚÈİ¿ÉÒÔ×·¼Ó
+		// true, è®¾ç½®å†…å®¹å¯ä»¥è¿½åŠ 
 		FileOutputStream fos = new FileOutputStream(file, true);
-		//todo ÊÇ·ñÓĞÒ»¸ö·â×°ºÃµÄwriter£¿
+		//todo æ˜¯å¦æœ‰ä¸€ä¸ªå°è£…å¥½çš„writerï¼Ÿ
 		OutputStreamWriter oswDef = new OutputStreamWriter(fos);
 		BufferedWriter bwdef = new BufferedWriter(oswDef);
 		
 		bwdef.write(STRING);
 		bwdef.newLine();
 		bwdef.flush();
-//		bwdef.close();  //ÎªÊ²Ã´²»ÄÜÔÚÕâĞ´
+//		bwdef.close();  //ä¸ºä»€ä¹ˆä¸èƒ½åœ¨è¿™å†™
 		System.out.println("oswDef encoding: " + oswDef.getEncoding());
 		
 		OutputStreamWriter oswGBK = new OutputStreamWriter(fos, "GBK");

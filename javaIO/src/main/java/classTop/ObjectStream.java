@@ -30,7 +30,7 @@ public class ObjectStream {
 			ObjectOutputStream oos = new ObjectOutputStream(
 					new FileOutputStream("src/testtxt/object.txt"));
 			for(int i = 0; i < 10; i++){
-				oos.writeObject(new Person("Å·Ñô·æ[" + i +"]", i));
+				oos.writeObject(new Person("æ¬§é˜³é”‹[" + i +"]", i));
 			}
 			oos.writeObject(null);
 			oos.close();
@@ -71,7 +71,7 @@ public class ObjectStream {
 					new FileOutputStream(newFile("src/testtxt/objectArrays.txt")));
 			Person[] persons = new Person[10];
 			for(int i = 0; i < 10; i++){
-				Person person = new Person("ºéÆß¹«[" + i + "]", i);
+				Person person = new Person("æ´ªä¸ƒå…¬[" + i + "]", i);
 				persons[i] = person;
 			}
 			oos.writeObject(persons);
@@ -82,7 +82,7 @@ public class ObjectStream {
 		}
 	}
 	/**
-	 * Í¨¹ý¼¯ºÏÐ´Èë¶ÔÏó
+	 * é€šè¿‡é›†åˆå†™å…¥å¯¹è±¡
 	 */
 	private static void writeObjectByList() {
 		try {
@@ -90,10 +90,10 @@ public class ObjectStream {
 					new FileOutputStream("src/testtxt/objectByList.txt"));
 			List<Person> persons=new ArrayList<Person>();
 			for (int i = 1; i < 10; i++) {
-				Person person = new Person("Å·ÑôÅô List[" + (20+i)+"]", 20+i);
+				Person person = new Person("æ¬§é˜³é¹ List[" + (20+i)+"]", 20+i);
 				persons.add(person);
 			}
-			//Ð´ÈëList
+			//å†™å…¥List
 			oos.writeObject(persons);
 			oos.close();
 		} catch (Exception e) {

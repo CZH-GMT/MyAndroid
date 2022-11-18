@@ -7,22 +7,21 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.annotation.processing.Filer;
 
 public class BufferedWriteReaderTest {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-        File srcfile = new File("src/testtxt/BufferedReader.txt");
-        File dstFile = new File("src/testtxt/BufferedWrite.txt");
+        File srcfile = new File(Path.path+"/BufferedReader.txt");
+        File dstFile = new File(Path.path+"/BufferedWrite.txt");
         
         BufferedWriter bw = new BufferedWriter(new FileWriter(dstFile));
         BufferedReader br = new BufferedReader(new FileReader(srcfile));
         
 
-        
-        char[] string = new char[1024]; // 请注意此处不是byte，而是char
-      
+
+        char[] string = new char[1024];// 璇锋敞鎰忔澶勪笉鏄痓yte锛岃�屾槸char
+
         while ((br.read(string))!= -1) {
 			bw.write(string);
 		}
