@@ -12,7 +12,8 @@ import android.os.IBinder;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
-import com.example.myapplication2.R;
+import com.example.service.R;
+
 
 /**
  * Description:启动前台服务Demo
