@@ -15,6 +15,7 @@
       <module name="My_Android.proxy" target="1.8" />
       <module name="My_Android.retrofit" target="1.8" />
       <module name="My_Android.rxjava" target="1.8" />
+      <module name="My_Android.service" target="1.8" />
       <module name="My_Android.viewpage2" target="1.8" />
     </bytecodeTargetLevel>
   </component>

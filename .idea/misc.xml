@@ -6,6 +6,8 @@
         <entry key="..\:/MyAndroid/rxjava/src/main/res/layout/activity_request.xml" value="0.2125" />
         <entry key="..\:/MyAndroid/rxjava/src/main/res/layout/activity_rx_down_image.xml" value="0.2125" />
         <entry key="..\:/MyAndroid/rxjava/src/main/res/layout/activity_use.xml" value="0.2125" />
+        <entry key="service/src/main/res/layout/activity_foreground.xml" value="0.5348958333333333" />
+        <entry key="service/src/main/res/layout/activity_main.xml" value="0.5171875" />
       </map>
     </option>
   </component>
