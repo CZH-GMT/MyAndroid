@@ -32,7 +32,7 @@ public class RxJavaDemo extends AppCompatActivity {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> e) throws Exception {
-                e.onNext("A");
+                e.onNext("A");//将事件传递到下面
             }
         })
         .observeOn(Schedulers.io()) // java
