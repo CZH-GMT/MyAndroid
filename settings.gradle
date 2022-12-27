@@ -17,3 +17,4 @@ rootProject.name = "My Android"
 include ':xuliehua'
 include ':javaIO'
 include ':service'
+include ':broadcast'

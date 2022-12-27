@@ -5,6 +5,7 @@
       <module name="My_Android.activitytofragment" target="1.8" />
       <module name="My_Android.anotation" target="1.8" />
       <module name="My_Android.app" target="1.8" />
+      <module name="My_Android.broadcast" target="1.8" />
       <module name="My_Android.fragmentandviewpage" target="1.8" />
       <module name="My_Android.javaIO" target="1.8" />
       <module name="My_Android.javaIO.main" target="1.8" />
