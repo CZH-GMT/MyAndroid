@@ -41,7 +41,7 @@ public class BinderActivity extends AppCompatActivity {
         mBindservice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "绑定调用：bindService");
+                Log.e(TAG, "绑定调用：bindService");
                 bindService(intent, serviceConnection, Service.BIND_AUTO_CREATE);
             }
         });
@@ -49,7 +49,7 @@ public class BinderActivity extends AppCompatActivity {
         mUnbindservice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "解绑调用：unbindService");
+                Log.e(TAG, "解绑调用：unbindService");
                 unbindService(serviceConnection);
             }
         });
@@ -58,9 +58,9 @@ public class BinderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (myService!=null) {
-                    Log.d(TAG, "从服务端获取数据：" + myService.getCount());
+                    Log.e(TAG, "从服务端获取数据：" + myService.getCount());
                 }else {
-                    Log.d(TAG, "还没绑定呢，先绑定,无法从服务端获取数据");
+                    Log.e(TAG, "还没绑定呢，先绑定,无法从服务端获取数据");
                 }
             }
         });
@@ -72,7 +72,7 @@ public class BinderActivity extends AppCompatActivity {
              */
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
-                Log.d(TAG, "onServiceConnected");
+                Log.e(TAG, "onServiceConnected");
 
                 BinderService.LocalBinder localBinder = (BinderService.LocalBinder) service;
 
@@ -85,7 +85,7 @@ public class BinderActivity extends AppCompatActivity {
              */
             @Override
             public void onServiceDisconnected(ComponentName name) {
-                Log.d(TAG, "onServiceDisconnected");
+                Log.e(TAG, "onServiceDisconnected");
 
                 myService = null;
             }

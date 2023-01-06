@@ -1,6 +1,7 @@
 package com.example.myandroid;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.Image;
 import android.os.Bundle;
@@ -23,13 +24,14 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 
 
-public class MainActivity extends AppCompatActivity implements DialogUtil.onViewListener{
+public class MainActivity extends AppCompatActivity implements DialogUtil.onViewListener {
 
     private ImageView mImage;
     private ImageView mImage1;
     private ImageView mImage2;
     private ImageView mImage3;
     private View inflate;
+    private Button rcyadv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +46,11 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
 
     private void judgeScreenDirection() {
         //判断横竖屏方向
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
             Log.i("info", "landscape"); // 横屏
 
-        }
-
-        else if (getResources().getConfiguration().orientation ==Configuration.ORIENTATION_PORTRAIT) {
+        } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 
             Log.i("info", "portrait"); // 竖屏
 
@@ -62,14 +62,21 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
         mImage1 = findViewById(R.id.image1);
         mImage2 = findViewById(R.id.image2);
         mImage3 = findViewById(R.id.image3);
+        rcyadv = findViewById(R.id.rcyadv);
+
+
+        rcyadv.setOnClickListener((v) -> {
+            startActivity(new Intent(MainActivity.this,RcyActivity.class));
+        });
+
 
         Button dialog = findViewById(R.id.dailog);
         Button dialogBuilder = findViewById(R.id.dialogBuilder);
-        dialog.setOnClickListener((v)-> {
+        dialog.setOnClickListener((v) -> {
             showDialogs();
 //
         });
-        dialogBuilder.setOnClickListener((v)->{
+        dialogBuilder.setOnClickListener((v) -> {
             showDialogBuilder();
         });
 
@@ -98,7 +105,16 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
     }
 
     private void showDialogBuilder() {
-        DialogUtil builder = new DialogUtil.Builder().context(this).isOutsideClose(true).dialogStyle(R.style.BoxDialog).onViewListener(this).gravity(Gravity.CENTER).height(ActionBar.LayoutParams.WRAP_CONTENT).width(ActionBar.LayoutParams.MATCH_PARENT).view(inflate).builder();
+        DialogUtil builder = new DialogUtil.Builder()
+                .context(this)
+                .isOutsideClose(true)
+                .dialogStyle(R.style.BoxDialog)
+                .onViewListener(this)
+                .gravity(Gravity.CENTER)
+                .height(ActionBar.LayoutParams.WRAP_CONTENT)
+                .width(ActionBar.LayoutParams.MATCH_PARENT)
+                .view(inflate)
+                .builder();
         builder.show();
 
 
@@ -128,17 +144,15 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
                 Toast.makeText(MainActivity.this, three.getText() + "", Toast.LENGTH_SHORT).show();
             }
         });
-        DialogUtil dialogUtil = new DialogUtil(MainActivity.this, inflate, true, R.style.BoxDialog, ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM,this);
+        DialogUtil dialogUtil = new DialogUtil(MainActivity.this, inflate, true, R.style.BoxDialog, ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM, this);
         dialogUtil.show();
-
-
 
 
     }
 
     @Override
     public void getView(View view) {
-        Toast.makeText(this,view.getId()+"回调View" , Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, view.getId() + "回调View", Toast.LENGTH_SHORT).show();
 
     }
 }

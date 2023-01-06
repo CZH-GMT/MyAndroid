@@ -8,18 +8,18 @@
 
     <Button
         android:id="@+id/bindService"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="绑定"
          />
     <Button
         android:id="@+id/unBindService"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="解绑"/>
     <Button
         android:id="@+id/getData"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="获取数据"/>
 </LinearLayout>

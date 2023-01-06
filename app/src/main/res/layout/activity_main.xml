@@ -51,6 +51,12 @@
             android:layout_height="wrap_content"
             android:text="dialogBuilder"
             />
+        <Button
+            android:id="@+id/rcyadv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="列表插入view"
+            />
 
 
     </LinearLayout>

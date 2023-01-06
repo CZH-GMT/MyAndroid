@@ -11,13 +11,30 @@
         android:id="@+id/startForegroundService"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="启动前台服务"
+        android:text="启动前台服务通知"
         />
     <Button
         android:id="@+id/stopForegroundService"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="关闭前台服务"
+        android:text="关闭前台服务通知"
         />
+
+    <Button
+        android:id="@+id/messengerService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转messenger服务"
+        />
+
+    <Button
+        android:id="@+id/binderService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转binder服务"
+        />
+
+
+
 
 </LinearLayout>

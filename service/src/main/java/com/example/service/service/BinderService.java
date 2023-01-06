@@ -45,7 +45,7 @@ public class BinderService extends Service {
      */
     @Override
     public void onCreate() {
-        Log.d(TAG,"onCreate接口");
+        Log.e(TAG,"onCreate接口");
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -73,7 +73,7 @@ public class BinderService extends Service {
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG,"onStartCommand  intent="+intent.getExtras()+"flags="+flags+"startId"+startId);
+        Log.e(TAG,"onStartCommand  intent="+intent.getExtras()+"flags="+flags+"startId"+startId);
         return super.onStartCommand(intent, flags, startId);
     }
 

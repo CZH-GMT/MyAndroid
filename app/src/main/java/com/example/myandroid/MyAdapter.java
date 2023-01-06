@@ -1,5 +1,6 @@
 package com.example.myandroid;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
  */
 public class MyAdapter extends RecyclerView.Adapter {
     private Context context;
-    private boolean isAddView = true;
     private View addView = null;
     private int addIndex;
     private ArrayList<String> arrayList;
+    int positions;
 
 
     public MyAdapter(ArrayList<String> arrayList, Context context) {
@@ -39,7 +40,7 @@ public class MyAdapter extends RecyclerView.Adapter {
 
     public void rcyAddView(int position, View addView) {
         this.addView = addView;
-        addIndex = position;
+        addIndex = position - 1;
         notifyDataSetChanged();
     }
 
@@ -56,21 +57,21 @@ public class MyAdapter extends RecyclerView.Adapter {
         return null;
     }
 
+    @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         int itemViewType = getItemViewType(position);
-        Log.e("position", "onBindViewHolder: position" + position);
+        if (position > addIndex && addView != null) {
+            positions = position - 1;
+        } else {
+            positions = position;
+        }
+        Log.e("position", "onBindViewHolder: positions" + positions);
         if (itemViewType != 2) {
             if (holder instanceof ViewHolder) {
                 ViewHolder viewHolder = (ViewHolder) holder;
-                if (position > addIndex && addView != null) {
-                    viewHolder.mText.setText(arrayList.get(position - 1));
-                } else {
-                    viewHolder.mText.setText(arrayList.get(position));
-                }
-
+                viewHolder.mText.setText(arrayList.get(positions));
             }
-
         }
 
     }
