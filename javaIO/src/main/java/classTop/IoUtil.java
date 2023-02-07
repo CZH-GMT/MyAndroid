@@ -1,5 +1,6 @@
 package classTop;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -69,7 +70,7 @@ public class IoUtil {
      * @param s
      * @return
      */
-    public static boolean writeInputStream(String filePath, String s) {
+    public static boolean writeOutputStream(String filePath, String s) {
         try {
             OutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filePath));
             bufferedOutputStream.write(s.getBytes(StandardCharsets.UTF_8));
@@ -80,6 +81,25 @@ public class IoUtil {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * @param
+     * @param filePath
+     * @return
+     */
+    public static byte[] readInputStream(String filePath) {
+        try {
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(filePath));
+            byte[] bytes = new byte[1024];
+            int len;
+            while ((len = bufferedInputStream.read(bytes)) != -1) {
+                return bytes;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -112,7 +132,6 @@ public class IoUtil {
     }
 
     /**
-     *
      * @param filePath
      * @param <T>
      * @return
