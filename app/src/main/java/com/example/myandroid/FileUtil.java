@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.os.Environment;
+import android.os.StatFs;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -57,6 +58,20 @@ public class FileUtil {
                     {".z", "application/x-compress"}, {".zip", "application/x-zip-compressed"}, {"", "*/*"}
             };
 
+
+
+    /**
+     * 检测内存大小
+     *
+     * @return 返回为MB
+     */
+    public static long getFreeSpace(String path) {
+        StatFs stat = new StatFs(path);
+        long blockSize = stat.getBlockSizeLong();
+        long availableBlocks = stat.getAvailableBlocksLong();
+        return availableBlocks * blockSize / 1000000;
+    }
+
     /**
      * 获取指定文件夹下所有视频文件
      *
@@ -81,7 +96,7 @@ public class FileUtil {
                 // 判断是否为MP4结尾
                 if (filename.trim().toLowerCase().endsWith(".mp4") || filename.trim().toLowerCase().endsWith(".3gp") ||
                         filename.trim().toLowerCase().endsWith(".avi") || filename.trim().toLowerCase().endsWith(".flv")) {
-                    Log.e(TAG, "VideoInfo: videoName:" + subFile[i].getName() + "videoPath:" + subFile[i].getPath() + "videoTime" + getTime(subFile[i].getPath()));
+                    Log.e(TAG, "VideoInfo: videoName:" + subFile[i].getName() + "videoPath:" + subFile[i].getPath() + "videoTime" + getVideoDuration(subFile[i].getPath()));
                     // 设置文件路径
                     info.setPath(subFile[i].getPath());
                     Log.e(TAG, "videoPath" + subFile[i].getPath());
@@ -91,7 +106,7 @@ public class FileUtil {
                     Log.e(TAG, "videoName" + subFile[i].getName());
 
                     //设置文件时长
-                    info.setDuration(getTime(subFile[i].getPath()));
+                    info.setDuration(getVideoDuration(subFile[i].getPath()));
                     Log.d(TAG, "videoTime" + subFile[i].getPath());
 
                     //根据路径获得视频缩略图
@@ -110,11 +125,17 @@ public class FileUtil {
      * @param path
      * @return
      */
-    public static String getTime(String path) {
-        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-        mediaMetadataRetriever.setDataSource(path);
-        int seconds = Integer.parseInt(mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000;
+    public static String getVideoDuration(String path) {
+        int seconds = 0;
         String standardTime;
+        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+        try {
+            FileInputStream inputStream = new FileInputStream(new File(path).getAbsolutePath());
+            mediaMetadataRetriever.setDataSource(inputStream.getFD());
+            seconds = Integer.parseInt(mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (seconds <= 0) {
             standardTime = "00:00";
         } else if (seconds < 60) {
@@ -124,6 +145,7 @@ public class FileUtil {
         } else {
             standardTime = String.format(Locale.getDefault(), "%02d:%02d:%02d", seconds / 3600, seconds % 3600 / 60, seconds % 60);
         }
+        mediaMetadataRetriever.release();
         return standardTime;
     }
 
@@ -147,7 +169,8 @@ public class FileUtil {
         Bitmap b = null;
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         try {
-            retriever.setDataSource(filePath);
+            FileInputStream inputStream = new FileInputStream(new File(filePath).getAbsolutePath());
+            retriever.setDataSource(inputStream.getFD());
             b = retriever.getFrameAtTime();
         } catch (Exception e) {
             e.printStackTrace();
@@ -160,6 +183,62 @@ public class FileUtil {
         }
         return b;
     }
+
+    /**
+     * 获取目标目录
+     *
+     * @param usbPath  USB根路径
+     * @param srcPath  复制文件的路径
+     * @param destPath 目标根路径
+     * @return
+     */
+    public static String getTargetDirectory(String usbPath, String srcPath, String destPath) {
+        String targetDir = null;
+        StringBuilder splicingStr = null;
+        try {
+            Log.e(TAG, "getTargetDirectory: usbPath--" + usbPath + ",  srcPath--" + srcPath + ", destPath--" + destPath);
+            int length = usbPath.length();
+            String string = srcPath.substring(length + 1);
+            Log.e(TAG, "getTargetDirectory: 截取的路径--" + string);
+            String[] split = string.split("/");
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < split.length; i++) {
+                Log.e(TAG, "getTargetDirectory: 分割的--" + split[i]);
+                if (i <= 2) {
+                    splicingStr = stringBuilder.append("/" + split[i]);
+                    Log.e(TAG, "getTargetDirectory: 拼接的第-" + i + "-个，结果是--" + splicingStr.toString());
+                }
+            }
+            String s = splicingStr.toString();
+            Log.e(TAG, "getTargetDirectory: 拼接完成--" + s);
+            targetDir = destPath + s;
+            Log.e(TAG, "getTargetDirectory: 组成目录为--" + targetDir);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return targetDir;
+    }
+
+    /**
+     * 获取目标目录
+     *
+     * @param usbPath  USB根路径
+     * @param srcPath  复制文件的路径
+     * @param destPath 目标根路径
+     * @return
+     */
+    public static String getTargetDirectory2(String usbPath, String srcPath, String destPath) {
+        Log.e(TAG, "getTargetDirectory: usbPath--" + usbPath + ",  srcPath--" + srcPath + ", destPath--" + destPath);
+        int length = usbPath.length();
+        String string = srcPath.substring(length + 1);
+        String dirName = FileUtil.getDirName(string);
+        String targetDirs = string.substring(0, string.length() - (dirName.length() + 1));
+        Log.e(TAG, "getTargetDirectory: 截掉剩余的--" + targetDirs);
+        String targetDir = destPath + File.separator + targetDirs;
+        Log.e(TAG, "getTargetDirectory: 组成目录为--" + targetDir);
+        return targetDir;
+    }
+
 
     /**
      * 根据文件后缀名获得对应的MIME类型
