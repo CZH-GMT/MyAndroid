@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -14,6 +15,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
 
 public class IoUtil {
@@ -178,6 +181,51 @@ public class IoUtil {
         }
         return false;
     }
+
+    /**
+     * 速度最快读写方式
+     *
+     * @param srcPath
+     * @param destPath
+     * @return
+     */
+    public boolean channelCopy(String srcPath, String destPath) {
+        try {
+            File srcFile = new File(srcPath);
+            File destFile = new File(destPath);
+
+            if (!srcFile.exists()) {
+                // 源文件不存在
+                return false;
+            }
+            if (srcFile.isDirectory() || destFile.isDirectory()) {
+                return false;
+            }
+
+            FileInputStream fileInputStream = new FileInputStream(srcFile);
+            FileOutputStream fileOutputStream = new FileOutputStream(destFile);
+            FileChannel inputChannel = fileInputStream.getChannel();
+            FileChannel outputChannel = fileOutputStream.getChannel();
+
+            ByteBuffer byteBuffer = ByteBuffer.allocate(1024 * 1024);
+            int len;
+
+            while ((len = inputChannel.read(byteBuffer)) != -1) {
+                byteBuffer.flip();
+                outputChannel.write(byteBuffer);
+                byteBuffer.clear();
+            }
+            inputChannel.close();
+            outputChannel.close();
+            fileInputStream.close();
+            fileOutputStream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
 
     public static void main(String[] args) {
 //        String o = readFile(path+"/oooo.txt");
