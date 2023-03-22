@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -58,6 +60,65 @@ public class FileUtil {
                     {".z", "application/x-compress"}, {".zip", "application/x-zip-compressed"}, {"", "*/*"}
             };
 
+
+    /**
+     * 获取目录下所有文件(按时间排序)
+     *
+     * @param path
+     * @return
+     */
+    public static List<File> listFileSortByModifyTime(String path) {
+        List<File> list = getFilesye(path, new ArrayList<File>());
+        if (list != null && list.size() > 0) {
+            Collections.sort(list, new Comparator<File>() {
+                public int compare(File file, File newFile) {
+                    if (file.lastModified() < newFile.lastModified()) {
+                        return -1;
+                    } else if (file.lastModified() == newFile.lastModified()) {
+                        return 0;
+                    } else {
+                        return 1;
+                    }
+                }
+            });
+        }
+        return list;
+    }
+
+    /**
+     * 获取目录下所有文件
+     *
+     * @param realpath
+     * @param files
+     * @return
+     */
+    public static List<File> getFilesye(String realpath, List<File> files) {
+        File realFile = new File(realpath);
+        Log.e(TAG, "getFilesye: 1");
+        if (realFile.isDirectory()) {
+            Log.e(TAG, "getFilesye: 2");
+            File[] subfiles = realFile.listFiles();
+            for (File file : subfiles) {
+                if (file.isDirectory()) {
+                    Log.e(TAG, "getFilesye: 3");
+                    getFilesye(file.getAbsolutePath(), files);
+                } else {
+                    Log.e(TAG, "getFilesye: 4");
+                    files.add(file);
+                }
+            }
+        }
+        return files;
+    }
+
+    /**
+     * 格式化取当前时间
+     *
+     * @return
+     */
+    public static String getThisDateTime(long l) {
+        return new SimpleDateFormat("yyyy-MM-dd").format(l);
+    }
 
 
     /**
@@ -337,7 +398,7 @@ public class FileUtil {
         File srcFile = new File(srcPath); // 源文件
         if (!srcFile.exists()) {
             // 源文件不存在
-           Log.e(TAG,"源文件不存在");
+            Log.e(TAG, "源文件不存在");
             return false;
         }
         // 获取待复制文件的文件名
@@ -345,13 +406,13 @@ public class FileUtil {
         String destPath = destDir + fileName;
         if (destPath.equals(srcPath)) {
             // 源文件路径和目标文件路径重复
-           Log.e(TAG,"源文件路径和目标文件路径重复!");
+            Log.e(TAG, "源文件路径和目标文件路径重复!");
             return false;
         }
         File destFile = new File(destPath); // 目标文件
         if (destFile.exists() && destFile.isFile()) {
             // 该路径下已经有一个同名文件
-           Log.e(TAG,"目标目录下已有同名文件!");
+            Log.e(TAG, "目标目录下已有同名文件!");
             return false;
         }
         File destFileDir = new File(destDir);
@@ -372,7 +433,7 @@ public class FileUtil {
             e.printStackTrace();
         }
         if (flag) {
-           Log.e(TAG,"复制文件成功!");
+            Log.e(TAG, "复制文件成功!");
         }
         return flag;
     }
@@ -570,7 +631,7 @@ public class FileUtil {
                 }
             }
         } else {
-           Log.e(TAG,"SD卡未挂载！");
+            Log.e(TAG, "SD卡未挂载！");
         }
         return list;
     }
@@ -642,13 +703,13 @@ public class FileUtil {
      * @return 复制成功则返回true
      */
     public static boolean copyFolder(String srcPath, String destDir) {
-       Log.e(TAG,"复制文件夹开始!");
+        Log.e(TAG, "复制文件夹开始!");
         boolean flag = false;
 
         File srcFile = new File(srcPath);
         if (!srcFile.exists()) {
             // 源文件夹不存在
-           Log.e(TAG,"源文件夹不存在");
+            Log.e(TAG, "源文件夹不存在");
             return false;
         }
         String dirName = getDirName(srcPath); // 获得待复制的文件夹的名字，比如待复制的文件夹为"E://dir"则获取的名字为"dir"
@@ -656,13 +717,13 @@ public class FileUtil {
         String destPath = destDir + File.separator + dirName; // 目标文件夹的完整路径
         //Log.e("目标文件夹的完整路径为：" + destPath);
         if (destPath.equals(srcPath)) {
-           Log.e(TAG,"目标文件夹与源文件夹重复");
+            Log.e(TAG, "目标文件夹与源文件夹重复");
             return false;
         }
         File destDirFile = new File(destPath);
         if (destDirFile.exists()) {
             // 目标位置有一个同名文件夹
-           Log.e(TAG,"目标位置已有同名文件夹!");
+            Log.e(TAG, "目标位置已有同名文件夹!");
             return false;
         }
         destDirFile.mkdirs(); // 生成目录
@@ -686,7 +747,7 @@ public class FileUtil {
             }
         }
         if (flag) {
-           Log.e(TAG,"复制文件夹成功!");
+            Log.e(TAG, "复制文件夹成功!");
         }
         return flag;
     }
