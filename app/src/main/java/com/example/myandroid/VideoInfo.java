@@ -26,6 +26,11 @@ public class VideoInfo {
     public VideoInfo() {
     }
 
+    public VideoInfo(String path, String name) {
+        this.path = path;
+        this.name = name;
+    }
+
     public VideoInfo(Bitmap cover, String title, String path, String name, long size, String duration, String showType, int itemId, boolean isCheck) {
         this.cover = cover;
         this.title = title;

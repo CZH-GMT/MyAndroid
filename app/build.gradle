@@ -43,4 +43,8 @@ dependencies {
 
     // usb 依赖 目前最新版本为0.7.0，但是该版本的兼容库已迁移至androidx
     implementation 'com.github.mjdev:libaums:0.6.0'
+
+    //拼音依赖
+    implementation 'com.belerweb:pinyin4j:2.5.1'
+
 }

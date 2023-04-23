@@ -23,6 +23,16 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 public class MainActivity extends AppCompatActivity implements DialogUtil.onViewListener {
 
@@ -155,4 +165,70 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
         Toast.makeText(this, view.getId() + "回调View", Toast.LENGTH_SHORT).show();
 
     }
+
+    //中文英文排序 英文在中文的的后面
+    private void extracted() {
+        ArrayList<String> peopleName = new ArrayList<>();
+        peopleName.add("adsdfdfdf");
+        peopleName.add("aaewrtgdty");
+        peopleName.add("丽莎");
+        peopleName.add("马克");
+        peopleName.add("安德烈");
+        peopleName.add("fytyuyuiyuiui");
+        peopleName.add("菲尔");
+        peopleName.add("bsdsd");
+        peopleName.add("byutrftry");
+        peopleName.add("梅根");
+        peopleName.add("卡特琳娜");
+        peopleName.add("奥利弗");
+        peopleName.add("瑞安");
+        peopleName.add("不好吃");
+        peopleName.add("埃米莉");
+        peopleName.add("尼古拉斯");
+        peopleName.add("fdsfdf");
+        peopleName.add("rfdffg");
+        peopleName.add("不因楼");
+
+        for (int i = 0; i < peopleName.size(); i++) {
+            String str = peopleName.get(i);
+            if (str.length() == 0)
+                return;
+            String alphabet = str.substring(0, 1);
+            /*判断首字符是否为中文，如果是中文便将首字符拼音的首字母和&符号加在字符串前面*/
+            if (alphabet.matches("[\\u4e00-\\u9fa5]+")) {
+                str = getAlphabet(str) + "&" + str;
+                peopleName.set(i, str);
+            }
+        }
+
+        Collections.sort(peopleName, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        /*遍历数组，去除标识符&及首字母*/
+        for (int i = 0; i < peopleName.size(); i++) {
+            String str = peopleName.get(i);
+            if (str.contains("&") && str.indexOf("&") == 1) {
+                peopleName.set(i,str.split("&")[1]) ;
+            }
+            System.out.println(peopleName.get(i));
+        }
+    }
+    public static String getAlphabet(String str) {
+        HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
+        // 输出拼音全部小写
+        defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+        // 不带声调
+        defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        String pinyin = null;
+        try {
+            pinyin = (String) PinyinHelper.toHanyuPinyinStringArray(str.charAt(0), defaultFormat)[0];
+        } catch (BadHanyuPinyinOutputFormatCombination e) {
+            e.printStackTrace();
+        }
+        return pinyin.substring(0, 1);
+    }
+
 }

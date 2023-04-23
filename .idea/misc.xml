@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/layout/layout_rcy.xml" value="0.5348958333333333" />
         <entry key="app/src/main/res/layout/layout_rcyitem.xml" value="0.34739583333333335" />
         <entry key="broadcast/src/main/res/layout/activity_offlin_text.xml" value="0.35833333333333334" />
+        <entry key="mvp/src/main/res/layout/activity_mvp.xml" value="0.5348958333333333" />
         <entry key="service/src/main/res/layout/activity_foreground.xml" value="0.5348958333333333" />
         <entry key="service/src/main/res/layout/activity_main.xml" value="0.5171875" />
         <entry key="service/src/main/res/layout/activity_messenger.xml" value="0.5348958333333333" />
