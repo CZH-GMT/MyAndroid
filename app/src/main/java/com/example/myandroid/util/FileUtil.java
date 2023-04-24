@@ -1,4 +1,4 @@
-package com.example.myandroid;
+package com.example.myandroid.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,6 +8,8 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.example.myandroid.VideoInfo;
 
 import java.io.File;
 import java.io.FileInputStream;

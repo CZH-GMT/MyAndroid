@@ -1,4 +1,4 @@
-package com.example.myandroid;
+package com.example.myandroid.util;
 
 
 /**

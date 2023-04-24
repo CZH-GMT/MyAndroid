@@ -1,4 +1,4 @@
-package com.example.myandroid;
+package com.example.myandroid.util;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,6 +8,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+
+import com.example.myandroid.R;
 
 public class DialogUtil extends Dialog {
 

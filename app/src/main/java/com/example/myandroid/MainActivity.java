@@ -3,7 +3,6 @@ package com.example.myandroid;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +20,8 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
+import com.example.myandroid.insertrcy.RcyActivity;
+import com.example.myandroid.util.DialogUtil;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
 
 
         rcyadv.setOnClickListener((v) -> {
-            startActivity(new Intent(MainActivity.this,RcyActivity.class));
+            startActivity(new Intent(MainActivity.this, RcyActivity.class));
         });
 
 
