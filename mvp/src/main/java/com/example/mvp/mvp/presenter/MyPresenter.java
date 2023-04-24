@@ -19,12 +19,12 @@ public class MyPresenter extends BasePresenter<MainContract.IView, MyModel> {
         model.LoadData(new MainContract.IBaseModel.onResponseCallBack() {
             @Override
             public void success(String data) {
-                view.showData(data);
+                getView().showData(data);
             }
 
             @Override
             public void showError(String error) {
-                view.showError(error);
+                getView().showError(error);
             }
         });
 

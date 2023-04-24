@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         //创建真正的对象
         Real1 real11 = new Real1();
 
-        //动态代理
+        //动态代理  第一个参数 类加载器  第二个参数 接口数组  第三个参数 invocationHandler对象
         Object o = Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(),
                 new Class[]{MessageInterface.class},//jdk只能代理接口
                 new InvocationHandler() {
