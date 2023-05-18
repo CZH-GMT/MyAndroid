@@ -37,7 +37,7 @@ public class WeChatActivity extends AppCompatActivity {
         server.addObserver(liumangUser);
 
         // 微信平台 发生了 改变
-        // server.pushMessage(msg);
+         server.pushMessage(msg);
 
 
 

@@ -8,6 +8,7 @@ import com.example.myandroid.VideoInfo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,15 @@ import java.util.stream.Collectors;
 public class Stream {
 
     public static void main(String[] args) {
+        ArrayList<VideoInfo> videoList = new ArrayList<>();
 
+        videoList.add(new VideoInfo("路径一", "第一个文件"));
+        videoList.add(new VideoInfo("路径二", "按二个文件"));
+
+
+        List<VideoInfo> collect = videoList.stream().sorted(Comparator.comparing(VideoInfo::getName)).collect(Collectors.toList());
+
+        collect.forEach(videoInfo -> System.out.println(videoInfo.getName()));
     }
 
     private void initData() {

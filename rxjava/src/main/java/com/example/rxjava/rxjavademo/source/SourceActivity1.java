@@ -1,5 +1,6 @@
 package com.example.rxjava.rxjavademo.source;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -43,6 +44,7 @@ public class SourceActivity1 extends AppCompatActivity {
     /**
      * TODO RxJava Hook 点
      */
+    @SuppressLint("CheckResult")
     public static void testHook() {
         Observable.create(new ObservableOnSubscribe<Object>() {
             @Override

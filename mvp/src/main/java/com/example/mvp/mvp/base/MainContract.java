@@ -1,11 +1,11 @@
 package com.example.mvp.mvp.base;
 
-public interface MainContract {
+public class MainContract {
 
     /**
      * model Interface
      */
-    interface IBaseModel {
+    public interface IBaseModel {
         void LoadData(onResponseCallBack onResponseCallBack);
 
         interface onResponseCallBack {
@@ -18,14 +18,14 @@ public interface MainContract {
     /**
      * baseView
      */
-    interface IBaseView {
+    public interface IBaseView {
     }
 
     /**
      * viewInterface
      */
 
-    interface IView extends IBaseView {
+    public interface IView extends IBaseView {
 
         void showError(String error);
 

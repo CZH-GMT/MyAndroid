@@ -46,6 +46,7 @@ public class RxJavaDemo extends AppCompatActivity {
         ;
     }
 
+    @SuppressLint("CheckResult")
     private void test01() {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
@@ -78,6 +79,7 @@ public class RxJavaDemo extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("CheckResult")
     private void test02() {
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
