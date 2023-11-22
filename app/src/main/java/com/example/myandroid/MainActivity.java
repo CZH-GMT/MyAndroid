@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,11 +25,6 @@ import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.example.myandroid.insertrcy.RcyActivity;
 import com.example.myandroid.util.DialogUtil;
 
-import net.sourceforge.pinyin4j.PinyinHelper;
-import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
-import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
-import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
-import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
     private View inflate;
     private Button rcyadv;
 
+
+    private static Handler handler=new Handler(Looper.getMainLooper());
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +49,12 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
         inflate = LayoutInflater.from(MainActivity.this).inflate(R.layout.layout_dailog, null);
         initViews();
         judgeScreenDirection();
+//        String debug = build.DEBUG;
+//        boolean debug = BuildConfig.DEBUG;
+        String debug = BuildConfig.debug;
+        boolean isRealease = BuildConfig.isRealease;
 
-
+//        BuildConfig
     }
 
     private void judgeScreenDirection() {
@@ -196,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
             String alphabet = str.substring(0, 1);
             /*判断首字符是否为中文，如果是中文便将首字符拼音的首字母和&符号加在字符串前面*/
             if (alphabet.matches("[\\u4e00-\\u9fa5]+")) {
-                str = getAlphabet(str) + "&" + str;
+//                str = getAlphabet(str) + "&" + str;
                 peopleName.set(i, str);
             }
         }
@@ -211,24 +214,60 @@ public class MainActivity extends AppCompatActivity implements DialogUtil.onView
         for (int i = 0; i < peopleName.size(); i++) {
             String str = peopleName.get(i);
             if (str.contains("&") && str.indexOf("&") == 1) {
-                peopleName.set(i,str.split("&")[1]) ;
+                peopleName.set(i, str.split("&")[1]);
             }
             System.out.println(peopleName.get(i));
         }
     }
-    public static String getAlphabet(String str) {
-        HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
-        // 输出拼音全部小写
-        defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-        // 不带声调
-        defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        String pinyin = null;
-        try {
-            pinyin = (String) PinyinHelper.toHanyuPinyinStringArray(str.charAt(0), defaultFormat)[0];
-        } catch (BadHanyuPinyinOutputFormatCombination e) {
-            e.printStackTrace();
+//    public static String getAlphabet(String str) {
+//        HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
+//        // 输出拼音全部小写
+//        defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+//        // 不带声调
+//        defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+//        String pinyin = null;
+//        try {
+//            pinyin = (String) PinyinHelper.toHanyuPinyinStringArray(str.charAt(0), defaultFormat)[0];
+//        } catch (BadHanyuPinyinOutputFormatCombination e) {
+//            e.printStackTrace();
+//        }
+//        return pinyin.substring(0, 1);
+//    }
+
+
+    int arr[] = {1, 16, 18, 8, -4, 7, -1, -5};
+
+
+    private int maxValue(int[] arr) {
+        int maxSum = arr[0];
+        int currentSum = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            currentSum = Math.max(arr[i], currentSum + arr[i]);
+            maxSum = Math.max(maxSum, currentSum);
         }
-        return pinyin.substring(0, 1);
+        return maxSum;
     }
 
+
+//    public static int findMaxSubarraySum(int[] nums) {
+//        int maxSum = nums[0];1
+//        int currentSum = nums[0];-1
+//
+//        for (int i = 1; i < nums.length; i++) {
+//                  15             16           15
+//            currentSum = Math.max(nums[i], currentSum + nums[i]);
+//                 15             12    15
+//            maxSum = Math.max(maxSum, currentSum);
+//        }
+//
+//        return maxSum;
+//    }
+//    private int maxInt(int[] arr) {
+//        int maxInt = 0;
+//        for (int i = 0; i < arr.length; i++) {
+//            if (maxInt<){}
+//            maxInt+= arr[i];
+//        }
+//    }
 }

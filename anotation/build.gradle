@@ -1,13 +1,19 @@
-plugins {
-    id 'com.android.application'
+//plugins {
+if (isRelease) { //正式环境的话就变成模块
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
 }
+//}
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.anotation"
+        if (!isRelease) {//正式环境的话就不加在变成模块
+            applicationId appID.anotation
+        }
         minSdkVersion 22
         targetSdkVersion 30
         versionCode 1

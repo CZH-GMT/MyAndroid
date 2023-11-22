@@ -1,0 +1,56 @@
+//扩展块
+ext {
+
+    isRelease=true
+
+    //建立Map存储  key和value都是自定义的
+    androidID = [
+            compileSdkVersion        : 30,
+            buildToolsVersion        : "30.0.3",
+            applicationId            : "com.example.myandroid",
+            minSdkVersion            : 22,
+            targetSdkVersion         : 30,
+            versionCode              : 1,
+            versionName              : "1.0",
+
+            testInstrumentationRunner: "androidx.test.runner.AndroidJUnitRunner"
+    ]
+
+    //定义项目环境
+    url=[
+            debug : "http:/.192.168.22.99/debug",
+            release : "http:/.192.168.22.99/release"
+    ]
+
+
+    appID = [
+            app: "com.example.myandroid",
+            anotation:"com.example.anotation"
+    ]
+
+    dependenciesID = [
+            //glide
+            "glide"           : 'com.github.bumptech.glide:glide:4.10.0',
+            "compiler"        : 'com.github.bumptech.glide:compiler:4.10.0',
+
+            "appcompat"       : 'androidx.appcompat:appcompat:1.1.0',
+            "material"        : 'com.google.android.material:material:1.1.0',
+            "constraintlayout": 'androidx.constraintlayout:constraintlayout:1.1.3',
+            "junit"           : 'junit:junit:4.+',
+            "ext.junit"       : 'androidx.test.ext:junit:1.1.1',
+            "espresso-core"   : 'androidx.test.espresso:espresso-core:3.2.0',
+
+            // usb 依赖 目前最新版本为0.7.0，但是该版本的兼容库已迁移至androidx
+            "libaums"         : 'com.github.mjdev:libaums:0.6.0'
+    ]
+//    android
+//    compileSdkVersion 30
+//    buildToolsVersion "30.0.3"
+//
+//        applicationId "com.example.myandroid"
+//        minSdkVersion 22
+//        targetSdkVersion 30
+//        versionCode 1
+//        versionName "1.0"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+}
